@@ -1,0 +1,6 @@
+﻿services:
+  purchaseorder:
+    image: purchaseorder
+    build:
+      context: .
+      dockerfile: PurchaseOrder/Dockerfile
