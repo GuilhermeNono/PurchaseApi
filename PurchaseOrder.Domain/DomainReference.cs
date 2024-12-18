@@ -1,6 +1,6 @@
 using System.Reflection;
 
-namespace PurchaseOrder.Api;
+namespace PurchaseOrder.Domain;
 
 public static class DomainReference
 {

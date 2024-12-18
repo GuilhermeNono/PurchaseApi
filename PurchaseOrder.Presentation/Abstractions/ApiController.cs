@@ -1,16 +1,12 @@
-using System.Security.Claims;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using PurchaseOrder.Domain.Annotations;
-using PurchaseOrder.Domain.Enums;
 using PurchaseOrder.Domain.Interfaces;
 using PurchaseOrder.Domain.Objects;
 
 namespace PurchaseOrder.Presentation.Abstractions;
 
 [ApiController]
-[Protected]
 public abstract class ApiController : ControllerBase, IController
 {
     protected readonly ISender Sender;
