@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using PurchaseOrder.Domain.Database.Context;
@@ -34,7 +35,22 @@ public static class ServiceExtension
 
     public static IServiceCollection AddRepositories(this IServiceCollection services)
     {
+        AddMainRepositories(services);
+        AddAuditRepositories(services);
+
+        return services;
+    }
+    
+    private static IServiceCollection AddMainRepositories(IServiceCollection services)
+    {
         services.AddScoped<IProductRepository, ProductRepository>();
+
+        return services;
+    }
+    private static IServiceCollection AddAuditRepositories(IServiceCollection services)
+    {
+        //TODO: Adicionar o AuditRepository
+        // services.AddScoped<IProductLogRepository, ProductLogRepository>();
 
         return services;
     }

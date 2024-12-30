@@ -1,4 +1,5 @@
 using PurchaseOrder.Domain.Entities;
+using PurchaseOrder.Domain.Entities.Main;
 using PurchaseOrder.Domain.Repositories;
 using PurchaseOrder.infrastructure.Database.Orm.EntityFramework.Context;
 using PurchaseOrder.infrastructure.Database.Orm.EntityFramework.Repositories;

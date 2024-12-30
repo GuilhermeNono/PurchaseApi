@@ -4,7 +4,9 @@ using PurchaseOrder.Api.Filters;
 using PurchaseOrder.Application;
 using PurchaseOrder.Crosscutting.Extensions;
 using PurchaseOrder.infrastructure;
+using PurchaseOrder.infrastructure.Migrations;
 using PurchaseOrder.Presentation;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -34,6 +36,15 @@ builder.Services.AddSwaggerGen();
 builder.Services.ConfigureDatabase(builder.Configuration);
 builder.Services.AddRepositories();
 
+#region || Serilog ||
+
+builder.Host.UseSerilog((context, configuration) =>
+{
+    configuration.ReadFrom.Configuration(context.Configuration);
+});
+
+#endregion
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
@@ -42,8 +53,16 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+#region || Migration System ||
 
+app.RunFunctionsDbUp(builder.Configuration)
+    .RunMainDbUp(builder.Configuration)
+    .RunAuditDbUp(builder.Configuration);
+
+#endregion
+
+app.UseHttpsRedirection();
+app.UseSerilogRequestLogging();
 app.UseAuthorization();
 
 app.MapControllers();

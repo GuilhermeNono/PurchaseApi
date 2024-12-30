@@ -2,6 +2,7 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using PurchaseOrder.Domain.Entities;
+using PurchaseOrder.Domain.Entities.Main;
 using PurchaseOrder.Domain.Repositories;
 using PurchaseOrder.Presentation.Abstractions;
 using PurchaseOrder.Presentation.Controllers.Responses;
